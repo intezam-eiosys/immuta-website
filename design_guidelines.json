@@ -1,0 +1,127 @@
+{
+  "project_name": "IMMUTA Post-Quantum Cybersecurity Masterclass",
+  "app_type": "hybrid_fullstack",
+  "theme": {
+    "default_mode": "dark",
+    "style_archetype": "LUXURY_DEEP_QUANTUM",
+    "color_palette": {
+      "primary_burgundy": "#2B0B1E",
+      "dark_background": "#0B060F",
+      "surface_card": "#180C1F",
+      "surface_card_border": "rgba(212, 175, 55, 0.15)",
+      "vibrant_purple": "#9A36E3",
+      "purple_glow": "rgba(154, 54, 227, 0.35)",
+      "cta_coral": "#FF5E36",
+      "cta_coral_hover": "#E04822",
+      "metallic_gold": "#D4AF37",
+      "gold_glow": "rgba(212, 175, 55, 0.25)",
+      "text_primary": "#F4F1F8",
+      "text_secondary": "#B3A7C2",
+      "text_muted": "#7A6D8C",
+      "success_teal": "#10B981"
+    },
+    "forbidden_colors": ["#7351B7", "#1B93A4"]
+  },
+  "brand_assets": {
+    "logo_url": "https://cornflowerblue-tapir-328757.hostingersite.com/wp-content/uploads/2026/05/immuta-png-01-1-1536x495.webp",
+    "contact_details": {
+      "phone": "+123 456 789",
+      "email": "domain@gmail.com",
+      "address": "123 Creative Lane London SW1A 1AA UK"
+    }
+  },
+  "typography": {
+    "heading_font": "Outfit, sans-serif",
+    "subheading_font": "Cabinet Grotesk, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "code_mono_font": "JetBrains Mono, monospace",
+    "forbidden_fonts": ["Space Grotesk"],
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-extrabold",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3_subsection": "text-xl sm:text-2xl font-semibold",
+      "card_title": "text-lg sm:text-xl font-semibold",
+      "body": "text-base leading-relaxed",
+      "caption_label": "text-xs sm:text-sm uppercase tracking-widest font-mono"
+    }
+  },
+  "layout_and_spacing": {
+    "grid_system": "Bento Grid Mode A (Tetris Grid) with asymmetric spans",
+    "spacing_philosophy": "Generous spacing (p-6, p-8, py-16, py-24) with negative breathing room",
+    "container_max_width": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "header_height": "h-20"
+  },
+  "key_sections": [
+    {
+      "id": "hero",
+      "title": "Kinetic Hero & Course Stats",
+      "features": ["Masked line-by-line reveal animation", "Live course badges (Price: $1,499 / £1,199, Duration: 8 Weeks, Level: Advanced)", "Primary CTA to Enquiry Modal/Form", "Sticky header integration with IMMUTA logo"]
+    },
+    {
+      "id": "course_overview",
+      "title": "Executive Summary & Key Features",
+      "features": ["NIST FIPS 203/204/205 Standards", "Harvest Now Decrypt Later risk mitigation", "Quantum Key Distribution (BB84)", "Cryptographic Bill of Materials (CBOM)"]
+    },
+    {
+      "id": "skills_grid",
+      "title": "Core Competencies & Skills Matrix",
+      "features": ["Interactive skill badges with gold/purple glows", "Quantum Threat Modeling", "PQC Algorithmic Migration", "Lattice-based Cryptography"]
+    },
+    {
+      "id": "curriculum_accordion",
+      "title": "Syllabus Breakdown",
+      "features": [
+        "Module 1: Foundations of Quantum Threat & Shor's Algorithm",
+        "Module 2: Post-Quantum Cryptography (PQC) & NIST FIPS Standards",
+        "Module 3: Quantum Threat Modeling & Enterprise CBOM Generation",
+        "Module 4: Quantum Key Distribution (QKD) & Hybrid Infrastructure Setup"
+      ]
+    },
+    {
+      "id": "hands_on_labs",
+      "title": "Virtual Sandbox & Labs Showcase",
+      "features": ["Interactive code snippet simulator", "Real-world migration scenario walkthroughs", "Terminal aesthetic with jetbrains mono font"]
+    },
+    {
+      "id": "certification_and_pathway",
+      "title": "Certification Pathway & Who Should Enroll",
+      "features": ["Certified Post-Quantum Security Specialist (CPQSS) digital credential preview", "Target personas: Chief Information Security Officers, Cryptographers, Enterprise Architects"]
+    },
+    {
+      "id": "enquiry_form",
+      "title": "Dedicated Course Enquiry Form Section",
+      "features": ["Frontend interactive form with full validation", "Success state notification on submit (Sonner toast + animated success card)", "Design-first implementation without requiring backend endpoint"]
+    },
+    {
+      "id": "faq_accordion",
+      "title": "Frequently Asked Questions",
+      "features": ["Prerequisites", "Hardware requirements", "Certificate verification", "Group discounts"]
+    },
+    {
+      "id": "footer",
+      "title": "Editorial Footer",
+      "features": ["IMMUTA brand statement", "Placeholder contact details from PDF", "Quick navigation links", "Copyright and compliance notices"]
+    }
+  ],
+  "image_urls": [
+    {
+      "category": "hero_background",
+      "url": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxxdWFudHVtJTIwY29tcHV0aW5nJTIwY3liZXJzZWN1cml0eSUyMHNlcnZlciUyMG1hdHJpeHxlbnwwfHx8fDE3OTExNzE4Mjl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Teal & Dark LED panel representing quantum matrix circuitry"
+    },
+    {
+      "category": "server_array",
+      "url": "https://images.unsplash.com/photo-1639066648921-82d4500abf1a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHw0fHxxdWFudHVtJTIwY29tcHV0aW5nJTIwY3liZXJzZWN1cml0eSUyMHNlcnZlciUyMG1hdHJpeHxlbnwwfHx8fDE3OTExNzE4Mjl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "High-density server array rack representing hardware security module"
+    },
+    {
+      "category": "cable_network",
+      "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwyfHxxdWFudHVtJTIwY29tcHV0aW5nJTIwY3liZXJzZWN1cml0eSUyMHNlcnZlciUyMG1hdHJpeHxlbnwwfHx8fDE3OTExNzE4Mjl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Fiber optic infrastructure and high-speed data transmission lines"
+    }
+  ],
+  "testing_and_qa": {
+    "data_testid_rules": "All interactive buttons, input fields, accordion items, tabs, and form components MUST include explicit kebab-case data-testid attributes (e.g. data-testid='enquiry-submit-btn', data-testid='hero-enquire-cta', data-testid='faq-accordion-item-1')."
+  },
+  "instructions_to_main_agent": "Ensure smooth scroll with Lenis or framer-motion scroll effects. Apply strict color fidelity to the IMMUTA PDF specs (maroon #2B0B1E, dark #0B060F, purple #9A36E3, coral CTA #FF5E36, gold #D4AF37). Do not alter or omit contact details provided in the prompt (+123 456 789, domain@gmail.com, 123 Creative Lane London SW1A 1AA UK). Include data-testid attributes on every interactive element."
+}
