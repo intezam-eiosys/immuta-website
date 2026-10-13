@@ -27,8 +27,8 @@
 - **Supabase integration (2026-10-13)**: enquiry storage moved from MongoDB to existing Supabase project "Immuta Site" (public.enquiries via asyncpg + Transaction Pooler :6543, RLS on, no public policies; anon key least-privilege verified). Admin dashboard reads/toggles live from Supabase. No schema changes were required (table already existed with approved schema). Legacy Mongo enquiry rows left in place (demo data)
 
 ## Backlog
-- P1: GitHub push — commit 6e0c030 (main) is deployment-ready; pod has no git remote, push happens via Emergent's platform GitHub integration
-- P1: Hostinger deployment — frontend is static-ready (build verified, .htaccess SPA fallback, README has full instructions); FastAPI backend cannot run on Hostinger Cloud Node plans (needs Emergent deployment or Hostinger VPS)
+- P1: GitHub push — main is deployment-ready at commit 3507181; pod has no git remote, push happens via Emergent's platform GitHub integration
+- P1: Hostinger deployment — backend-node/ (Express, Node 20) serves static frontend + API same-origin with external Supabase connection; README has full hPanel steps (app root backend-node, entry server.js, env vars incl. SUPABASE_DB_URI)
 - P1: Set OWNER_EMAIL to the owner's real inbox (currently placeholder domain@gmail.com, which is undeliverable)
 - P1: Replace placeholder contact details + real pricing when provided
 - P2: Downloadable curriculum PDF (CTA currently anchors to curriculum section)
