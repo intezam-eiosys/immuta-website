@@ -264,7 +264,7 @@ app.patch('/api/enquiries/:id', requireAdmin, async (req, res) => {
   }
 });
 
-const buildDir = path.join(__dirname, '..', 'frontend', 'build');
+const buildDir = path.join(__dirname, 'public');
 app.use(express.static(buildDir, { index: false, maxAge: isProd ? '1d' : 0 }));
 app.get(/^(?!\/api(?:\/|$)).*/, (_req, res, next) => {
   res.sendFile(path.join(buildDir, 'index.html'), (err) => (err ? next(err) : null));
