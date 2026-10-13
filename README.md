@@ -7,11 +7,11 @@ Dedicated course page for the IMMUTA Quantum Security Specialist Certificate: ki
 | Layer | Technology |
 |---|---|
 | Frontend | React 19 (Create React App), Tailwind CSS, Framer Motion, Lenis |
-| Backend | FastAPI (Python 3.11), Motor (MongoDB), asyncpg |
-| Databases | MongoDB (admin accounts) · Supabase PostgreSQL (enquiries — **optional, off by default**) |
+| Backend for Hostinger | Node.js 20 + Express (`backend-node/`) — serves the static site AND the API |
+| Backend (Emergent preview) | FastAPI Python (`backend/`) — same API contract, used by the Emergent preview deployment |
+| Database | **Supabase PostgreSQL (external connection)** — table `public.enquiries` |
 | Email | Emergent managed Resend integration |
-| Node.js | 20.x (LTS) — works on 18/20/22 |
-| Package manager | Yarn 1.x (frontend) / pip (backend) |
+| Package managers | Yarn 1.x (frontend), yarn/npm (Node backend) |
 
 ## Project Structure
 
@@ -27,8 +27,12 @@ Dedicated course page for the IMMUTA Quantum Security Specialist Certificate: ki
 │   │   └── lib/              # scroll + api helpers
 │   ├── package.json
 │   └── yarn.lock
-├── backend/                  # FastAPI API server (Python)
-│   ├── server.py             # All API endpoints
+├── backend-node/             # Express API for Hostinger (Node 20) — USE THIS ON HOSTINGER
+│   ├── server.js             # Entry file: API + static hosting of frontend/build
+│   ├── package.json
+│   └── .env.example
+├── backend/                  # FastAPI API (Python) — only used by the Emergent preview
+│   ├── server.py
 │   ├── requirements.txt
 │   └── .env.example
 └── .gitignore
@@ -38,80 +42,95 @@ Dedicated course page for the IMMUTA Quantum Security Specialist Certificate: ki
 
 Frontend (`frontend/.env`, baked in at **build time**):
 
+| Variable | Value for Hostinger (single app) |
+|---|---|
+| `REACT_APP_BACKEND_URL` | **leave empty** — the Node app serves the site and API on the same origin |
+
+Node backend (`backend-node/.env` — configure in Hostinger's Environment variables panel):
+
 | Variable | Purpose |
 |---|---|
-| `REACT_APP_BACKEND_URL` | Public base URL of the backend API |
+| `JWT_SECRET` | Random string, ≥ 32 chars |
+| `ADMIN_EMAIL` | Admin login email |
+| `ADMIN_PASSWORD_HASH` | bcrypt hash of the admin password (see below) |
+| `SUPABASE_DB_URI` | **External Supabase connection** — Transaction Pooler URI (port 6543) |
+| `EMERGENT_EMAIL_KEY` | Email integration key |
+| `EMAIL_FROM_NAME`, `EMAIL_REPLY_TO`, `OWNER_EMAIL` | Enquiry notification sender/recipient |
+| `NODE_ENV` | `production` on Hostinger (enables Secure cookies) |
+| `PORT` | Set by Hostinger automatically |
+| `FRONTEND_URL` | Optional — only if hosting frontend on a separate origin |
 
-Backend (`backend/.env`, server-side only — never commit):
-
-| Variable | Purpose |
-|---|---|
-| `MONGO_URL`, `DB_NAME` | MongoDB connection (admin accounts) |
-| `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | Admin auth for `/admin` |
-| `FRONTEND_URL` | Your site URL (CORS allow-list) |
-| `EMERGENT_EMAIL_KEY`, `EMAIL_FROM_NAME`, `EMAIL_REPLY_TO`, `OWNER_EMAIL` | Enquiry email notifications |
-| `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_DB_URI` | **Optional — Supabase storage for enquiries. Left disconnected by default.** |
-
-## Local Development
+Generate the admin password hash:
 
 ```bash
-# frontend
-cd frontend && yarn install && yarn start          # http://localhost:3000
-
-# backend (separate terminal)
-cd backend && pip install -r requirements.txt && uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+cd backend-node && yarn install
+node -e "const b=require('bcryptjs');console.log(b.hashSync(process.argv[1],12))" 'your-strong-password'
 ```
 
-## Production Build (Frontend)
+## Deploying to Hostinger Cloud (single Node app — recommended)
 
-```bash
-cd frontend
-# set the API URL for the build, then build:
-REACT_APP_BACKEND_URL=https://your-api-domain.example.com yarn build
-```
+The whole site (static React build + API + external Supabase) runs as **one Node.js application**.
 
-Output lands in `frontend/build/` — fully static, ready for any static host.
+1. **Build the frontend** (locally or in Hostinger's build step):
+   ```bash
+   cd frontend
+   # REACT_APP_BACKEND_URL must be empty for same-origin mode
+   REACT_APP_BACKEND_URL= yarn build
+   ```
+2. **Hostinger app settings** (hPanel → Websites → your site → *Node.js* / *Deployments*):
+   - Node.js version: **20.x**
+   - Application root: `backend-node`
+   - Startup / entry file: `server.js` (or start command: `node server.js` / `yarn start`)
+   - Build command: `yarn install` (Hostinger supports npm, Yarn and pnpm)
+3. **Environment variables**: add every variable from `backend-node/.env.example` in Hostinger's environment-variable panel — including `SUPABASE_DB_URI` (your Transaction Pooler URI from Supabase Dashboard → Connect → Transaction pooler, port 6543). Never commit `.env`.
+4. **Deploy / restart** the app. Hostinger injects `PORT` — the server binds `0.0.0.0:$PORT` automatically.
+5. **Verify**: open `https://your-domain/api/health` → `{"status":"ok","storage":"supabase"}`, then load `https://your-domain/admin` directly (SPA fallback serves the React app).
+6. **HTTPS**: hPanel → *Security → SSL* → install the free certificate and enable *Force HTTPS*.
+7. **Domain**: hPanel → *Domains* → point your domain at the site.
+8. **Keep running / updates**: Hostinger manages the Node process and restarts it. After a future `git pull`, rebuild the frontend (`REACT_APP_BACKEND_URL= yarn build`) and restart the app from hPanel.
 
-## Deploying the Frontend to Hostinger
+Alternative (split hosting): deploy `frontend/build/` as pure static files (it ships `.htaccess` for SPA routing on LiteSpeed/Apache) and set `REACT_APP_BACKEND_URL` to an API hosted elsewhere. The FastAPI `backend/` serves this role on the Emergent preview.
 
-1. **Build** with the command above (the API URL is baked in).
-2. **Upload the contents of `frontend/build/`** (not the folder itself) to your domain's web root (e.g. `public_html/`) via Hostinger File Manager, or use Hostinger's Git deployment: *Websites → your site → Deployments → Git* and point it at this repository — then run the build command as the deployment step if your plan supports it.
-3. **SPA routing**: a ready-made `.htaccess` ships inside `frontend/public/` and is included in the build output — it rewrites deep links like `/admin` to `index.html` on LiteSpeed/Apache. Nothing to configure manually.
-4. **HTTPS**: Hostinger → *Websites → your site → Security → SSL* — install a free SSL certificate and enable *Force HTTPS*.
-5. **Domain**: Hostinger → *Websites → your site → Domains* to point your domain at the site.
-
-## Backend Hosting — Important Reality Check
-
-The FastAPI backend **cannot run on Hostinger Cloud's Node.js application plans** (their supported runtimes are Node.js-based: Express, Fastify, Hono, NestJS, Next.js…). Pick one:
-
-1. **Recommended**: keep the API running on its current Emergent deployment (already live at `https://course-page-redesign.preview.emergentagent.com`) and point `REACT_APP_BACKEND_URL` at it when building, **or**
-2. Host the backend on a **Hostinger VPS** (full Python support): clone the repo, `pip install -r backend/requirements.txt`, run `uvicorn server:app --host 0.0.0.0 --port 8001` behind Nginx with `systemd` keeping it alive, **or**
-3. Port the API to Node.js (Express/Hono) — a future task, not part of this push.
-
-### What works / doesn't without the backend + database (current state: Supabase intentionally disconnected)
+## What Works Without a Database
 
 | Feature | Static-only deployment |
 |---|---|
 | Course page, design, curriculum, FAQ, navigation | ✅ fully works |
 | Enquiry form validation + error handling | ✅ works (client-side) |
-| **Storing submissions / email notifications** | ❌ requires the FastAPI backend + a database (Supabase optional var / MongoDB for admin) |
-| **Admin dashboard (`/admin`)** | ❌ requires the backend + MongoDB + database |
+| **Storing submissions / email notifications / admin dashboard** | ❌ require the Node backend + `SUPABASE_DB_URI` — set the env vars on Hostinger to enable |
 
-## Updating After Future GitHub Pushes
+## Local Development
 
 ```bash
-git pull && cd frontend && yarn install && yarn build
+# frontend (uses REACT_APP_BACKEND_URL from frontend/.env)
+cd frontend && yarn install && yarn start            # http://localhost:3000
+
+# Node backend (same-origin mode)
+cd backend-node && yarn install && cp .env.example .env  # then edit values
+yarn dev                                             # http://localhost:8002
 ```
-Then re-upload the new `frontend/build/` contents (Hostinger Git deployments re-run this automatically).
+
+## API Endpoints
+
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| GET | `/api/health` | — | Health + storage status |
+| POST | `/api/enquiries` | public | Store enquiry + email notification |
+| POST | `/api/auth/login` | rate-limited | Admin login (sets httpOnly JWT cookie) |
+| GET | `/api/auth/me` | admin | Current admin |
+| POST | `/api/auth/logout` | — | Clear cookie |
+| GET | `/api/enquiries` | admin | List enquiries |
+| PATCH | `/api/enquiries/:id` | admin | Toggle new/handled |
 
 ## Troubleshooting
 
-- **Blank page after upload** → you uploaded the `build` folder instead of its *contents*, or `.htaccess` wasn't uploaded (hidden files: enable "show hidden" in File Manager).
-- **`/admin` shows 404 on refresh** → `.htaccess` missing from web root.
-- **Form submits but nothing is stored** → the API URL is wrong in the build, or the backend is down / its database is not configured (check backend logs).
-- **Admin login fails** → `ADMIN_EMAIL`/`ADMIN_PASSWORD` in the backend env; 5 wrong attempts lock the account for 15 minutes.
-- **Styles missing** → clear Hostinger cache (LiteSpeed Cache plugin / hPanel cache manager).
+- **`storage: "unavailable"` on /api/health** → `SUPABASE_DB_URI` not set in the app's environment variables; add it and restart.
+- **Blank page after upload** → missing build output; run `REACT_APP_BACKEND_URL= yarn build` in `frontend/` and make sure `backend-node/../frontend/build` exists relative to the app root.
+- **`/admin` returns 404 on refresh** → the SPA fallback route is missing — make sure Hostinger runs `backend-node/server.js`, which includes it.
+- **Admin login fails** → `ADMIN_PASSWORD_HASH` must be the bcrypt hash of the password you type; 10 wrong attempts per 15 minutes are throttled.
+- **Enquiries stored but no email** → check `EMERGENT_EMAIL_KEY`, `OWNER_EMAIL`; a failed notification never rolls back the stored enquiry.
+- **Cookies rejected** → must be accessed over HTTPS in production (`NODE_ENV=production` sets Secure cookies).
 
 ## Secrets
 
-`.env` files are git-ignored — real keys never enter the repository. Configure production secrets in Hostinger's environment-variable settings (for Node apps) or in your backend host's env configuration.
+`.env` files are git-ignored — real keys never enter the repository. Configure production secrets in Hostinger's environment-variable panel.

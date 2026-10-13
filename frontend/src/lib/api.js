@@ -10,4 +10,4 @@ export function formatApiErrorDetail(detail) {
   return String(detail);
 }
 
-export const API_BASE = process.env.REACT_APP_BACKEND_URL;
+export const API_BASE = process.env.REACT_APP_BACKEND_URL || "";
