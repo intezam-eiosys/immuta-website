@@ -1,4 +1,9 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "ignorePatterns": ["frontend/build/**", "backend-node/node_modules/**", "**/node_modules/**"]
+  "ignorePatterns": [
+    "frontend/build/**",
+    "backend-node/public/**",
+    "backend-node/node_modules/**",
+    "**/node_modules/**"
+  ]
 }

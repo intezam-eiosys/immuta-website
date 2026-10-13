@@ -71,12 +71,11 @@ node -e "const b=require('bcryptjs');console.log(b.hashSync(process.argv[1],12))
 
 The whole site (static React build + API + external Supabase) runs as **one Node.js application**.
 
-1. **Build the frontend** (locally or in Hostinger's build step):
-   ```bash
-   cd frontend
-   # REACT_APP_BACKEND_URL must be empty for same-origin mode
-   REACT_APP_BACKEND_URL= yarn build
+1. **Build the frontend during deploy** — set the Hostinger build command to (single line):
    ```
+   yarn install && cd ../frontend && yarn install && yarn build && rm -rf ../backend-node/public && cp -r build ../backend-node/public
+   ```
+   This installs backend + frontend dependencies, builds the site, and places the bundle inside `backend-node/public` so the Node app serves it same-origin. (A prebuilt copy of the bundle is also committed in the repo as a fallback.)
 2. **Hostinger app settings** (hPanel → Websites → your site → *Node.js* / *Deployments*):
    - Node.js version: **20.x**
    - Application root: `backend-node`
