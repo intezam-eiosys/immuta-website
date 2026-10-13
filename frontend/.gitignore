@@ -10,6 +10,9 @@
 
 # production
 /build
+!/build
+# NOTE: the prebuilt bundle is intentionally committed for Hostinger deploys
+# (negated here and re-included via root .gitignore)
 
 # misc
 .DS_Store
