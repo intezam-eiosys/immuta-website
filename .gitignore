@@ -17,7 +17,11 @@ node_modules/
 # --- Production builds (rebuild on the server) ---
 build/
 dist/
-/build
+# Exception: the prebuilt CRA bundle is committed so Hostinger can deploy
+# backend-node without running a frontend build. Rebuild and recommit after
+# frontend changes, or set Hostinger's build command to rebuild it.
+!/frontend/build
+!/frontend/build/**
 
 # --- Testing / coverage ---
 /coverage
