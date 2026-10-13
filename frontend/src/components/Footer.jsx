@@ -1,5 +1,4 @@
 import { ArrowUp } from "lucide-react";
-import { Link } from "react-router-dom";
 import { COURSE, NAV_LINKS } from "@/data/course";
 import { scrollToId } from "@/lib/scroll";
 
@@ -99,14 +98,6 @@ export const Footer = () => {
             >
               Contact Us
             </button>
-            <span aria-hidden="true">|</span>
-            <Link
-              data-testid="footer-admin-link"
-              to="/admin"
-              className="transition-colors hover:text-[#D4AF37]"
-            >
-              Admin
-            </Link>
           </div>
           <button
             data-testid="footer-back-to-top"
