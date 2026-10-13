@@ -1,7 +1,8 @@
 import { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "@/App.css";
 import CoursePage from "@/pages/CoursePage";
+import AdminPage from "@/pages/AdminPage";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -34,7 +35,11 @@ function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <CoursePage />
+        <Routes>
+          <Route path="/" element={<CoursePage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={<CoursePage />} />
+        </Routes>
       </BrowserRouter>
     </ErrorBoundary>
   );

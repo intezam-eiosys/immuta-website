@@ -20,11 +20,14 @@
 - Components: Navbar (sticky + mobile overlay menu), Hero (kinetic reveal, stats, tilt visual, floating terminal), Marquee, Overview (bento), Skills (4 pillars), Labs (terminal cards), Curriculum (accordion), WhyImmuta + WhoShouldEnroll, Pathway (certificate preview, careers, progression), Enquiry (validated form + success + sonner toast), Faq (accordion), Footer
 - Content data centralized in src/data/course.js (from the PDF, verbatim where provided)
 
-## Implemented (2026-10-05)
+## Implemented (2026-10-05, updated 2026-10-13)
 - All sections above, mobile-first responsive, data-testids on all interactive elements, ErrorBoundary, favicon + meta
+- **Enquiry pipeline (2026-10-13)**: POST /api/enquiries stores submissions in built-in MongoDB (enquiries collection), sends owner notification email via Emergent managed Resend integration (verified 202 Accepted to test inbox), JWT admin auth (bcrypt, httpOnly cookies, brute-force lockout), admin dashboard at /admin (login + enquiry list + stats + mark handled toggle), Admin link in footer
+- Admin credentials: see /app/memory/test_credentials.md
 
 ## Backlog
-- P1: Wire enquiry form to backend (POST /api/enquiries + admin view or email via Resend)
+- P1: Swap storage from MongoDB to Supabase PostgreSQL once user provides Transaction Pooler URI (playbook received; sqlalchemy+asyncpg+alembic, statement_cache_size=0)
+- P1: Set OWNER_EMAIL to the owner's real inbox (currently placeholder domain@gmail.com, which is undeliverable)
 - P1: Replace placeholder contact details + real pricing when provided
 - P2: Downloadable curriculum PDF (CTA currently anchors to curriculum section)
 - P2: Additional course pages (L1 Foundations, L3 Enterprise Architect)

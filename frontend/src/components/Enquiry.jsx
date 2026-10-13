@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast, Toaster } from "sonner";
-import { Phone, Mail, MapPin, ArrowUpRight, CheckCircle2, Send } from "lucide-react";
+import axios from "axios";
+import { Phone, Mail, MapPin, CheckCircle2, Send, AlertCircle } from "lucide-react";
 import { COURSE } from "@/data/course";
+import { API_BASE, formatApiErrorDetail } from "@/lib/api";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
 
 const initialForm = { name: "", email: "", phone: "", course: COURSE.name, message: "" };
@@ -24,17 +26,27 @@ export const Enquiry = () => {
     return err;
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const err = validate();
     setErrors(err);
     if (Object.keys(err).length > 0) return;
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    try {
+      await axios.post(`${API_BASE}/api/enquiries`, {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        course: form.course,
+        message: form.message.trim(),
+      });
       setSubmitted(true);
       toast.success("Enquiry received — our programme advisors will reach out within one working day.");
-    }, 900);
+    } catch (ex) {
+      toast.error(formatApiErrorDetail(ex.response?.data?.detail));
+    } finally {
+      setSending(false);
+    }
   };
 
   const reset = () => {
@@ -275,6 +287,10 @@ export const Enquiry = () => {
                         </>
                       )}
                     </button>
+                    <p className="mt-4 flex items-center gap-2 text-xs text-[#7A6D8C]" data-testid="enquiry-privacy-note">
+                      <AlertCircle className="h-3.5 w-3.5 text-[#D4AF37]" />
+                      Your details are stored securely and only used to answer this enquiry.
+                    </p>
                   </motion.form>
                 )}
               </AnimatePresence>
