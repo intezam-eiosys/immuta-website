@@ -24,9 +24,9 @@
 - All sections above, mobile-first responsive, data-testids on all interactive elements, ErrorBoundary, favicon + meta
 - **Enquiry pipeline (2026-10-13)**: POST /api/enquiries stores submissions in built-in MongoDB (enquiries collection), sends owner notification email via Emergent managed Resend integration (verified 202 Accepted to test inbox), JWT admin auth (bcrypt, httpOnly cookies, brute-force lockout), admin dashboard at /admin (login + enquiry list + stats + mark handled toggle), Admin link in footer
 - Admin credentials: see /app/memory/test_credentials.md
+- **Supabase integration (2026-10-13)**: enquiry storage moved from MongoDB to existing Supabase project "Immuta Site" (public.enquiries via asyncpg + Transaction Pooler :6543, RLS on, no public policies; anon key least-privilege verified). Admin dashboard reads/toggles live from Supabase. No schema changes were required (table already existed with approved schema). Legacy Mongo enquiry rows left in place (demo data)
 
 ## Backlog
-- P1: Swap storage from MongoDB to Supabase PostgreSQL once user provides Transaction Pooler URI (playbook received; sqlalchemy+asyncpg+alembic, statement_cache_size=0)
 - P1: Set OWNER_EMAIL to the owner's real inbox (currently placeholder domain@gmail.com, which is undeliverable)
 - P1: Replace placeholder contact details + real pricing when provided
 - P2: Downloadable curriculum PDF (CTA currently anchors to curriculum section)

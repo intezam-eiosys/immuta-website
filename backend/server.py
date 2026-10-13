@@ -15,6 +15,8 @@ import logging
 import bcrypt
 import jwt
 import httpx
+import asyncpg
+import ssl
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
@@ -25,6 +27,8 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+pg_pool: asyncpg.Pool = None
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -320,18 +324,28 @@ async def get_status_checks():
 
 @api_router.post("/enquiries", response_model=EnquiryOut)
 async def create_enquiry(input: EnquiryCreate):
+    if pg_pool is None:
+        raise HTTPException(status_code=503, detail="Storage unavailable")
     now = datetime.now(timezone.utc)
+    row = await pg_pool.fetchrow(
+        "insert into public.enquiries (name, email, phone, course, message) "
+        "values ($1, $2, $3, $4, $5) returning id, created_at",
+        input.name.strip(),
+        input.email.lower(),
+        input.phone.strip(),
+        input.course,
+        input.message.strip() if input.message else None,
+    )
     enquiry = EnquiryOut(
-        enquiry_id=str(uuid.uuid4()),
+        enquiry_id=str(row["id"]),
         name=input.name.strip(),
         email=input.email.lower(),
         phone=input.phone.strip(),
         course=input.course,
         message=input.message.strip() if input.message else "",
         status="new",
-        created_at=now.isoformat(),
+        created_at=row["created_at"].isoformat(),
     )
-    await db.enquiries.insert_one(enquiry.model_dump())
 
     email_status = "sent"
     try:
@@ -349,18 +363,52 @@ async def create_enquiry(input: EnquiryCreate):
 
 @api_router.get("/enquiries", response_model=List[EnquiryOut])
 async def list_enquiries(admin: dict = Depends(get_admin_user)):
-    docs = await db.enquiries.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
-    return docs
+    if pg_pool is None:
+        raise HTTPException(status_code=503, detail="Storage unavailable")
+    rows = await pg_pool.fetch(
+        "select id, name, email, phone, course, message, status, created_at "
+        "from public.enquiries order by created_at desc limit 500"
+    )
+    return [
+        EnquiryOut(
+            enquiry_id=str(r["id"]),
+            name=r["name"],
+            email=r["email"],
+            phone=r["phone"],
+            course=r["course"],
+            message=r["message"] or "",
+            status=r["status"],
+            created_at=r["created_at"].isoformat(),
+        )
+        for r in rows
+    ]
 
 
 @api_router.patch("/enquiries/{enquiry_id}", response_model=EnquiryOut)
 async def toggle_enquiry_status(enquiry_id: str, admin: dict = Depends(get_admin_user)):
-    doc = await db.enquiries.find_one({"enquiry_id": enquiry_id}, {"_id": 0})
-    if not doc:
+    if pg_pool is None:
+        raise HTTPException(status_code=503, detail="Storage unavailable")
+    try:
+        row_id = uuid.UUID(enquiry_id)
+    except ValueError:
         raise HTTPException(status_code=404, detail="Enquiry not found")
-    new_status = "handled" if doc.get("status") == "new" else "new"
-    await db.enquiries.update_one({"enquiry_id": enquiry_id}, {"$set": {"status": new_status}})
-    return {**doc, "status": new_status}
+    row = await pg_pool.fetchrow(
+        "update public.enquiries set status = case when status = 'new' then 'handled' else 'new' end "
+        "where id = $1 returning id, name, email, phone, course, message, status, created_at",
+        row_id,
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Enquiry not found")
+    return EnquiryOut(
+        enquiry_id=str(row["id"]),
+        name=row["name"],
+        email=row["email"],
+        phone=row["phone"],
+        course=row["course"],
+        message=row["message"] or "",
+        status=row["status"],
+        created_at=row["created_at"].isoformat(),
+    )
 
 
 @api_router.post("/auth/login")
@@ -454,6 +502,22 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
+    global pg_pool
+    try:
+        supabase_uri = os.environ.get("SUPABASE_DB_URI")
+        if supabase_uri:
+            ssl_ctx = ssl.create_default_context()
+            ssl_ctx.check_hostname = False
+            ssl_ctx.verify_mode = ssl.CERT_NONE
+            pg_pool = await asyncpg.create_pool(
+                supabase_uri, ssl=ssl_ctx, min_size=1, max_size=5, statement_cache_size=0
+            )
+            logger.info("Supabase Postgres pool connected")
+        else:
+            logger.warning("SUPABASE_DB_URI not set - enquiries storage unavailable")
+    except Exception as e:
+        logger.error(f"Supabase pool init failed: {e}")
+
     try:
         admin_email = os.environ.get("ADMIN_EMAIL", "admin@example.com").lower()
         admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
@@ -484,4 +548,6 @@ async def startup():
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
+    if pg_pool:
+        await pg_pool.close()
     client.close()
