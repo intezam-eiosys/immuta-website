@@ -44,7 +44,7 @@ export const Navbar = () => {
             <img
               src={COURSE.logo}
               alt="IMMUTA Technologies"
-              className="h-9 sm:h-11 w-auto"
+              className="h-12 sm:h-14 w-auto"
               width="1536"
               height="495"
             />

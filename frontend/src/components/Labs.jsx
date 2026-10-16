@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { Terminal } from "lucide-react";
-import { LABS, IMAGES, VIDEOS, LABS_NOTE } from "@/data/course";
+import { Terminal, Quote, Atom, Activity, Link2 } from "lucide-react";
+import { LABS, LABS_NOTE } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
+
+const LAB_ICONS = [Atom, Activity, Link2];
 
 export const Labs = () => (
   <section
@@ -60,43 +62,43 @@ export const Labs = () => (
 
         <Reveal className="lg:col-span-5" delay={0.15}>
           <div className="sticky top-28">
-            <div className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/25">
-              <video
-                poster={IMAGES.fiber}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className="aspect-[4/5] w-full object-cover"
-                data-testid="labs-video"
-              >
-                <source src={VIDEOS.labsWebm} type="video/webm" />
-                <source src={VIDEOS.labs} type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2B0B1E] via-transparent to-[#0B060F]/40" />
-              <div className="absolute inset-0 bg-[#9A36E3]/12 mix-blend-overlay" />
+            <div
+              className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#2B0B1E]/70 to-[#180C1F] p-7 sm:p-8"
+              data-testid="labs-note-panel"
+            >
               <div
-                className="absolute inset-0"
+                className="pointer-events-none absolute inset-0"
+                aria-hidden="true"
                 style={{
                   background:
-                    "radial-gradient(ellipse 55% 40% at 70% 25%, rgba(212,175,55,0.16), transparent 70%)",
+                    "radial-gradient(ellipse 70% 45% at 50% 0%, rgba(212,175,55,0.12), transparent 70%)",
                 }}
               />
-              <motion.blockquote
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-x-6 bottom-6 rounded-xl border border-[#D4AF37]/25 bg-[#0B060F]/80 p-5 backdrop-blur-md"
-              >
-                <p className="font-display text-base sm:text-lg font-semibold leading-snug text-[#F4F1F8]">
+              <div className="relative flex flex-col">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4AF37]/35 bg-[#D4AF37]/10 text-[#D4AF37]">
+                  <Quote className="h-5 w-5" />
+                </span>
+                <p className="mt-6 font-display text-lg sm:text-xl font-semibold leading-snug text-[#F4F1F8]">
                   {LABS_NOTE}
                 </p>
-                <cite className="mt-3 block font-mono2 text-[10px] uppercase not-italic tracking-[0.25em] text-[#D4AF37]">
+                <cite className="mt-4 block font-mono2 text-[10px] uppercase not-italic tracking-[0.25em] text-[#D4AF37]">
                   — Immuta Programme Note
                 </cite>
-              </motion.blockquote>
+                <div className="mt-8 flex items-center gap-4 border-t border-[#D4AF37]/15 pt-7">
+                  {LAB_ICONS.map((Icon, i) => (
+                    <motion.span
+                      key={i}
+                      whileHover={{ y: -4 }}
+                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#9A36E3]/35 bg-[#9A36E3]/10 text-[#C77DFF]"
+                    >
+                      <Icon className="h-5 w-5" />
+                    </motion.span>
+                  ))}
+                  <span className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#7A6D8C]">
+                    3 hands-on labs
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>

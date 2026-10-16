@@ -9,7 +9,7 @@ export const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <img src={COURSE.logo} alt="IMMUTA Technologies" className="h-10 w-auto" />
+            <img src={COURSE.logo} alt="IMMUTA Technologies" className="h-12 w-auto" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-[#B3A7C2]">
               IMMUTA Technologies trains professionals for the quantum era — starting with the
               Quantum Foundations Certificate: Qubits, Bloch Sphere, Gates &amp; Circuits, and

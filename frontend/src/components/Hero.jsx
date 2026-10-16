@@ -37,14 +37,14 @@ export const Hero = () => (
       <source src={VIDEOS.focus} type="video/mp4" />
     </video>
 
-    {/* legibility overlays: soft veil + darker gradient toward the right where the text sits */}
+    {/* legibility overlays: darker on the left where the text sits, video shows through on the right */}
     <div className="absolute inset-0 bg-[#0B060F]/40" aria-hidden="true" />
     <div
       className="absolute inset-0"
       aria-hidden="true"
       style={{
         background:
-          "linear-gradient(to right, rgba(11,6,15,0.15) 0%, rgba(11,6,15,0.72) 52%, rgba(11,6,15,0.94) 100%)",
+          "linear-gradient(to right, rgba(11,6,15,0.94) 0%, rgba(11,6,15,0.72) 48%, rgba(11,6,15,0.15) 100%)",
       }}
     />
     <div
@@ -58,9 +58,9 @@ export const Hero = () => (
       style={{ background: "linear-gradient(to bottom, rgba(11,6,15,0.7), transparent)" }}
     />
 
-    {/* content — right side, over the dark gradient */}
+    {/* content — left side, over the dark gradient */}
     <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="lg:ml-auto lg:w-[54%]">
+      <div className="lg:w-[54%]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
