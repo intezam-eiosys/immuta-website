@@ -3,7 +3,7 @@ import { CURRICULUM } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
 
 export const Curriculum = () => (
-  <section id="curriculum" className="relative py-24 sm:py-32" data-testid="curriculum-section">
+  <section id="curriculum" className="section-contrast relative py-24 sm:py-32" data-testid="curriculum-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">

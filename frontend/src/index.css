@@ -124,6 +124,23 @@ body {
   filter: brightness(0.42) saturate(1.5);
 }
 
+/* alternating contrast sections in the light theme: re-declare the dark
+   token palette inside these sections — dark theme is unaffected */
+.theme-light .section-contrast {
+  --bg-rgb: 11 6 15;
+  --text-rgb: 244 241 248;
+  --text2-rgb: 179 167 194;
+  --text3-rgb: 122 109 140;
+  --gold-rgb: 212 175 55;
+  --purple-rgb: 154 54 227;
+  --plite-rgb: 199 125 255;
+  --card2-rgb: 43 11 30;
+  --card3-rgb: 24 12 31;
+  --inputbg-rgb: 11 6 15;
+  --glow-burg: rgba(43, 11, 30, 0.9);
+  background: linear-gradient(160deg, #2b0b1e 0%, #12071a 100%);
+}
+
 .theme-light [data-sonner-toaster] {
   --normal-bg: #ffffff;
   --normal-text: #251330;

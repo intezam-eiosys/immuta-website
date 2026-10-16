@@ -2,7 +2,7 @@ import { MARQUEE_ITEMS } from "@/data/course";
 
 export const Marquee = () => (
   <div
-    className="relative overflow-hidden border-y border-gold/15 bg-card2/30 py-5"
+    className="section-contrast relative overflow-hidden border-y border-gold/15 bg-card2/30 py-5"
     data-testid="marquee-band"
     aria-label="Course topics marquee"
   >

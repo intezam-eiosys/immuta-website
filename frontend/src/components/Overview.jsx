@@ -103,7 +103,7 @@ export const Overview = () => (
 export const Audience = () => (
   <section
     id="audience"
-    className="relative border-y border-gold/12 bg-sect2 py-24 sm:py-32"
+    className="section-contrast relative border-y border-gold/12 bg-sect2 py-24 sm:py-32"
     data-testid="audience-section"
   >
     <div

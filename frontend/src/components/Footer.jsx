@@ -5,7 +5,7 @@ import { scrollToId } from "@/lib/scroll";
 export const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative border-t border-gold/15 bg-sect4" data-testid="footer">
+    <footer className="section-contrast relative border-t border-gold/15 bg-sect4" data-testid="footer">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-5">
