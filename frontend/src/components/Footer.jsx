@@ -1,13 +1,6 @@
 import { ArrowUp } from "lucide-react";
-import { COURSE, NAV_LINKS } from "@/data/course";
+import { COURSE, NAV_LINKS, TRACKS } from "@/data/course";
 import { scrollToId } from "@/lib/scroll";
-
-const SERVICES = [
-  "Quantum Computing",
-  "Quantum Threat Modeling",
-  "PQC Migration",
-  "Certification Training",
-];
 
 export const Footer = () => {
   const year = new Date().getFullYear();
@@ -18,12 +11,12 @@ export const Footer = () => {
           <div className="lg:col-span-5">
             <img src={COURSE.logo} alt="IMMUTA Technologies" className="h-10 w-auto" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-[#B3A7C2]">
-              IMMUTA Technologies trains cybersecurity professionals for the quantum era — from
-              Shor's Algorithm to NIST-standardized post-quantum cryptography and enterprise
-              migration.
+              IMMUTA Technologies trains professionals for the quantum era — starting with the
+              Quantum Foundations Certificate: Qubits, Bloch Sphere, Gates &amp; Circuits, and
+              Entanglement &amp; Bell States.
             </p>
             <p className="mt-6 font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#7A6D8C]">
-              Quantum Foundations → Quantum Security Specialist → Quantum Enterprise Architect
+              Progression: L1 → L2 → L3
             </p>
           </div>
 
@@ -48,11 +41,11 @@ export const Footer = () => {
 
           <div className="lg:col-span-2">
             <h3 className="font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#D4AF37]">
-              Services
+              Tracks
             </h3>
             <ul className="mt-5 flex flex-col gap-3">
-              {SERVICES.map((s) => (
-                <li key={s} className="text-sm text-[#B3A7C2]" data-testid={`footer-service-${s.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+              {TRACKS.map((s) => (
+                <li key={s} className="text-sm text-[#B3A7C2]" data-testid={`footer-track-${s.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
                   {s}
                 </li>
               ))}

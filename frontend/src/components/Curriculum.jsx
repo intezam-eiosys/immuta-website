@@ -8,17 +8,16 @@ export const Curriculum = () => (
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Reveal className="lg:sticky lg:top-28">
-            <Eyebrow no="04">Course Curriculum</Eyebrow>
-            <SectionTitle className="mt-5">Three modules. One quantum-ready defender.</SectionTitle>
+            <Eyebrow no="02">Curriculum Alignment</Eyebrow>
+            <SectionTitle className="mt-5">Three modules. Nineteen hours. One strong start.</SectionTitle>
             <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
-              Core topics move from quantum algorithms to NIST-standardized post-quantum
-              cryptography, and finally to the enterprise threat models that decide what you
-              migrate first.
+              Module hours sum to 19 hours — from your first qubit and the Bloch sphere, through
+              gates and circuits, to entanglement and Bell states.
             </p>
             <div className="mt-8 flex items-center gap-4 rounded-xl border border-[#D4AF37]/20 bg-[#2B0B1E]/40 p-5">
-              <span className="font-display text-4xl font-extrabold text-gold-grad">8</span>
+              <span className="font-display text-4xl font-extrabold text-gold-grad">19</span>
               <p className="text-sm leading-relaxed text-[#B3A7C2]">
-                weeks, part-time friendly — <span className="text-[#F4F1F8]">8 modules of labs &amp; theory</span> delivered online.
+                hours across three modules — <span className="text-[#F4F1F8]">Qubits to Bell states</span>, hands-on throughout.
               </p>
             </div>
           </Reveal>
@@ -34,12 +33,15 @@ export const Curriculum = () => (
                   className="rounded-2xl border border-[#D4AF37]/18 bg-gradient-to-br from-[#2B0B1E]/40 to-[#180C1F] px-6 sm:px-8 py-2 transition-colors duration-300 data-[state=open]:border-[#D4AF37]/45"
                 >
                   <AccordionTrigger className="group py-5 text-left hover:no-underline [&>svg]:hidden">
-                    <span className="flex flex-1 items-center gap-4 sm:gap-6 pr-4">
+                    <span className="flex flex-1 flex-wrap items-center gap-4 sm:gap-6 pr-4">
                       <span className="font-mono2 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#D4AF37]">
                         {m.no}
                       </span>
                       <span className="font-display text-lg sm:text-2xl font-bold text-[#F4F1F8]">
                         {m.title}
+                      </span>
+                      <span className="rounded-full border border-[#9A36E3]/35 bg-[#9A36E3]/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.15em] text-[#C77DFF]" data-testid={`curriculum-hours-${i + 1}`}>
+                        {m.hours}
                       </span>
                     </span>
                     <span
@@ -51,10 +53,12 @@ export const Curriculum = () => (
                     </span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-7">
-                    <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
-                      {m.body}
-                    </p>
-                    <p className="mt-6 font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#7A6D8C]">
+                    {m.body && (
+                      <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+                        {m.body}
+                      </p>
+                    )}
+                    <p className={`font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#7A6D8C] ${m.body ? "mt-6" : ""}`}>
                       Core Topics
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">

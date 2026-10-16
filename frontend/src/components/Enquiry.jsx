@@ -83,14 +83,13 @@ export const Enquiry = () => {
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
-              <Eyebrow no="07">Enquiry</Eyebrow>
+              <Eyebrow no="06">Enquiry</Eyebrow>
               <SectionTitle className="mt-5">
                 Book your free consultation.
               </SectionTitle>
               <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
-                Tell us where your cryptography stands — we will map the route from quantum threat
-                awareness to a full post-quantum migration plan, and answer every question about
-                the certificate.
+                Tell us where your team stands — we will map the route from your first qubit to a
+                full quantum-ready skillset, and answer every question about the certificate.
               </p>
             </Reveal>
             <div className="mt-10 flex flex-col gap-4">
@@ -170,7 +169,7 @@ export const Enquiry = () => {
                         Course Enquiry
                       </h3>
                       <span className="rounded-full border border-[#9A36E3]/40 bg-[#9A36E3]/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#C77DFF]">
-                        Free consultation
+                        Founding {COURSE.foundingPrice}
                       </span>
                     </div>
 
@@ -221,7 +220,7 @@ export const Enquiry = () => {
                           type="tel"
                           data-testid="enquiry-phone-input"
                           className={inputCls}
-                          placeholder="+44 20 1234 5678"
+                          placeholder="+63 917 000 0000"
                           value={form.phone}
                           onChange={set("phone")}
                         />
@@ -242,9 +241,9 @@ export const Enquiry = () => {
                           value={form.course}
                           onChange={set("course")}
                         >
-                          <option value={COURSE.name}>Quantum Security Specialist Certificate</option>
-                          <option value="Quantum Foundations">Quantum Foundations (L1)</option>
-                          <option value="Enterprise Track">Quantum Enterprise Architect (L3)</option>
+                          <option value={COURSE.name}>Quantum Foundations Certificate (L1)</option>
+                          <option value="Quantum Security Specialist Certificate (L2)">Quantum Security Specialist Certificate (L2)</option>
+                          <option value="Quantum Enterprise Architect (L3)">Quantum Enterprise Architect (L3)</option>
                           <option value="Custom Corporate Training">Custom Corporate Training</option>
                         </select>
                         {errors.course && (
@@ -262,7 +261,7 @@ export const Enquiry = () => {
                           data-testid="enquiry-message-input"
                           rows={4}
                           className={`${inputCls} resize-none`}
-                          placeholder="Tell us about your team, your crypto estate, or your timeline…"
+                          placeholder="Tell us about your team, your goals, or your timeline…"
                           value={form.message}
                           onChange={set("message")}
                         />

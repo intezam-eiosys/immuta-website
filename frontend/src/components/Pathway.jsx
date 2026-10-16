@@ -1,22 +1,19 @@
 import { motion } from "framer-motion";
-import { Radar, KeyRound, ScanEye, Route, BadgeCheck, ArrowRight } from "lucide-react";
-import { CAREERS, PROGRESSION, COURSE } from "@/data/course";
+import { BadgeCheck, ArrowRight } from "lucide-react";
+import { PROGRESSION, COURSE } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
-
-const CAREER_ICONS = { radar: Radar, key: KeyRound, scan: ScanEye, route: Route };
 
 export const Pathway = () => (
   <section id="pathway" className="relative py-24 sm:py-32" data-testid="pathway-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Reveal>
-        <Eyebrow no="06">Certification Pathway</Eyebrow>
+        <Eyebrow no="05">Certification Pathway</Eyebrow>
         <SectionTitle className="mt-5 max-w-3xl">
-          A credential that maps to emerging quantum-security roles.
+          The first rung of the Immuta certification ladder.
         </SectionTitle>
       </Reveal>
 
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
-        {/* certificate preview */}
         <Reveal className="lg:col-span-5" delay={0.05}>
           <motion.div
             whileHover={{ rotate: 0, scale: 1.015 }}
@@ -39,7 +36,7 @@ export const Pathway = () => (
                 Certificate of Competency
               </span>
               <h3 className="mt-4 font-display text-xl sm:text-2xl font-bold text-[#F4F1F8]">
-                Immuta Quantum Security Specialist Certificate
+                {COURSE.name}
               </h3>
               <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#9A36E3]/40 bg-[#9A36E3]/12 px-4 py-2 font-mono2 text-[10px] sm:text-[11px] uppercase tracking-[0.15em] text-[#E4CBFF]">
                 <BadgeCheck className="h-3.5 w-3.5 text-[#C77DFF]" />
@@ -47,7 +44,7 @@ export const Pathway = () => (
               </span>
               <div className="mt-8 flex w-full items-end justify-between border-t border-[#D4AF37]/20 pt-5">
                 <span className="font-mono2 text-[10px] tracking-[0.2em] text-[#7A6D8C]">
-                  ID · IMM-QSS-L2-2026
+                  ID · IMM-QF-L1-2026
                 </span>
                 <span
                   className="h-12 w-12 rounded-full border-2 border-[#D4AF37]/60"
@@ -62,38 +59,33 @@ export const Pathway = () => (
           </motion.div>
         </Reveal>
 
-        {/* careers */}
         <div className="lg:col-span-7">
           <Reveal delay={0.1}>
-            <p className="text-sm sm:text-base text-[#B3A7C2]">
-              This certification develops capability relevant to emerging roles such as:
-            </p>
+            <div
+              className="rounded-2xl border border-[#D4AF37]/18 bg-gradient-to-br from-[#2B0B1E]/50 to-[#180C1F] p-7 sm:p-8"
+              data-testid="tuition-card"
+            >
+              <p className="font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#D4AF37]">
+                Tuition
+              </p>
+              <div className="mt-4 flex flex-wrap items-end gap-4">
+                <span className="font-display text-4xl font-extrabold text-[#F4F1F8]" data-testid="tuition-price">
+                  {COURSE.price}
+                </span>
+                <span className="mb-1 inline-flex items-center gap-2 rounded-full border border-[#FF5E36]/40 bg-[#FF5E36]/10 px-4 py-1.5 font-mono2 text-[10px] uppercase tracking-[0.15em] text-[#FF5E36]" data-testid="founding-price-badge">
+                  Founding {COURSE.foundingPrice}
+                </span>
+              </div>
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+                19 hours across three modules — Qubits, Gates &amp; Circuits, Entanglement &amp;
+                Bell States.
+              </p>
+            </div>
           </Reveal>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {CAREERS.map((c, i) => {
-              const Icon = CAREER_ICONS[c.icon];
-              return (
-                <Reveal key={c.role} delay={0.08 * i} className="h-full">
-                  <article
-                    className="group flex h-full items-center gap-4 rounded-2xl border border-[#D4AF37]/18 bg-gradient-to-br from-[#2B0B1E]/50 to-[#180C1F] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#D4AF37]/45 hover:shadow-[0_18px_44px_rgba(212,175,55,0.14)]"
-                    data-testid={`career-card-${i + 1}`}
-                  >
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#9A36E3]/35 bg-[#9A36E3]/10 text-[#C77DFF] transition-transform duration-500 group-hover:scale-110">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="font-display text-base sm:text-lg font-bold text-[#F4F1F8]">
-                      {c.role}
-                    </h3>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
 
-          {/* progression */}
           <Reveal delay={0.15}>
             <div
-              className="mt-8 rounded-2xl border border-[#D4AF37]/18 bg-[#0B060F]/70 p-7 sm:p-8"
+              className="mt-6 rounded-2xl border border-[#D4AF37]/18 bg-[#0B060F]/70 p-7 sm:p-8"
               data-testid="progression-path"
             >
               <p className="font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#D4AF37]">
@@ -131,8 +123,8 @@ export const Pathway = () => (
                 ))}
               </div>
               <p className="mt-6 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
-                The Security Specialist pathway is the critical bridge between understanding
-                quantum computing and engineering quantum-safe enterprise environments.
+                Progression: L1 → L2 → L3. The Quantum Security Specialist and Quantum Enterprise
+                Architect levels build on this foundation.
               </p>
             </div>
           </Reveal>

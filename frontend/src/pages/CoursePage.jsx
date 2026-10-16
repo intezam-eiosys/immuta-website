@@ -3,14 +3,11 @@ import Lenis from "lenis";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
-import { Overview } from "@/components/Overview";
-import { Skills } from "@/components/Skills";
-import { Labs } from "@/components/Labs";
+import { Overview, Audience } from "@/components/Overview";
 import { Curriculum } from "@/components/Curriculum";
-import { WhyImmuta } from "@/components/WhyImmuta";
+import { Labs } from "@/components/Labs";
 import { Pathway } from "@/components/Pathway";
 import { Enquiry } from "@/components/Enquiry";
-import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 
 const NOISE =
@@ -45,13 +42,11 @@ export default function CoursePage() {
         <Hero />
         <Marquee />
         <Overview />
-        <Skills />
-        <Labs />
         <Curriculum />
-        <WhyImmuta />
+        <Labs />
+        <Audience />
         <Pathway />
         <Enquiry />
-        <Faq />
       </main>
       <Footer />
     </div>

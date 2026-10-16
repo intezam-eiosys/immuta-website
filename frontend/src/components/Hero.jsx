@@ -50,7 +50,6 @@ export const Hero = () => {
       className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 sm:pt-32"
       data-testid="hero-section"
     >
-      {/* atmosphere */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <motion.div style={{ y: glowY }} className="absolute inset-0">
           <div className="absolute -top-40 left-[-15%] h-[42rem] w-[42rem] rounded-full bg-[#2B0B1E]/70 blur-[140px]" />
@@ -69,7 +68,6 @@ export const Hero = () => {
       </div>
 
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        {/* copy */}
         <div className="lg:col-span-7">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -88,9 +86,9 @@ export const Hero = () => {
             className="font-display text-[clamp(2.6rem,6.4vw,5.6rem)] font-extrabold leading-[0.98] tracking-tight text-[#F4F1F8]"
             data-testid="hero-heading"
           >
-            <HeroLine delay={0.2}>Quantum Security</HeroLine>
+            <HeroLine delay={0.2}>Quantum</HeroLine>
             <HeroLine delay={0.32}>
-              <span className="text-gold-grad">Specialist</span>
+              <span className="text-gold-grad">Foundations</span>
             </HeroLine>
             <HeroLine delay={0.44}>
               <span className="text-stroke">Certificate</span>
@@ -151,7 +149,6 @@ export const Hero = () => {
           </motion.dl>
         </div>
 
-        {/* visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -195,14 +192,13 @@ export const Hero = () => {
                       Track
                     </p>
                     <p className="mt-1 font-display text-sm font-semibold text-[#F4F1F8]">
-                      Quantum Security Specialist
+                      Quantum Foundations · L1
                     </p>
                   </div>
                   <ShieldCheck className="h-7 w-7 text-[#D4AF37]" />
                 </div>
               </div>
 
-              {/* floating terminal */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -215,17 +211,16 @@ export const Hero = () => {
                   <span className="h-2.5 w-2.5 rounded-full bg-[#FF5E36]/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#D4AF37]/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#9A36E3]/80" />
-                  <span className="ml-2 font-mono2 text-[10px] text-[#7A6D8C]">shor@immuta-lab</span>
+                  <span className="ml-2 font-mono2 text-[10px] text-[#7A6D8C]">qubit@immuta-lab</span>
                 </div>
                 <pre className="font-mono2 text-[11px] leading-5 text-[#B3A7C2]">
-                  <span className="text-[#D4AF37]">$</span> shor run --N 15{"\n"}
-                  <span className="text-[#7A6D8C]">&gt;</span> factors found → {"{"}3, 5{"}"}{"\n"}
-                  <span className="text-[#7A6D8C]">&gt;</span> RSA status:{" "}
-                  <span className="text-[#FF5E36]">VULNERABLE</span>
+                  <span className="text-[#D4AF37]">$</span> qubit init --qubits 1{"\n"}
+                  <span className="text-[#7A6D8C]">&gt;</span> bloch vector θ=0, φ=0{"\n"}
+                  <span className="text-[#7A6D8C]">&gt;</span> state: |0⟩{" "}
+                  <span className="text-[#10B981]">READY</span>
                 </pre>
               </motion.div>
 
-              {/* floating badge */}
               <motion.div
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -236,7 +231,7 @@ export const Hero = () => {
               >
                 <span className="h-2 w-2 rounded-full bg-[#9A36E3]" />
                 <span className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#F4F1F8]">
-                  L2 · Advanced Track
+                  L1 · Foundations Track
                 </span>
               </motion.div>
             </motion.div>
