@@ -3,7 +3,7 @@ export const COURSE = {
   name: "Immuta Quantum Foundations Certificate",
   eyebrow: "IMMUTA Technologies — L1 Certification Track",
   description:
-    "Learn quantum concepts and build quantum circuits — hands-on using Qiskit and simulated quantum environments, with optional real quantum hardware access where available.",
+    "Learn quantum concepts and build quantum circuits.",
   stats: [
     { label: "Hours", value: "19" },
     { label: "Tuition", value: "₱9,900" },
@@ -121,9 +121,6 @@ export const LABS = [
     code: "$ bell pair --qubits 2\n> correlation 1.00\n> teleportation complete ✓",
   },
 ];
-
-export const LABS_NOTE =
-  "Hands-on using Qiskit and simulated quantum environments, with optional real quantum hardware access where available.";
 
 export const AUDIENCE = [
   "Cybersecurity Professionals",

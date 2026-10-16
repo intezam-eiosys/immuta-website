@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import {
-  Code2, Layers, Award, ShieldAlert, ScanSearch, LockKeyhole, Quote,
+  Code2, Layers, Award,
   ShieldCheck, ScanEye, ShieldHalf, Server, FlaskConical, GraduationCap, TrendingUp, Building2,
 } from "lucide-react";
-import { FEATURES, LABS_NOTE, AUDIENCE } from "@/data/course";
+import { FEATURES, AUDIENCE } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
 
 const FEATURE_ICONS = [Code2, Layers, Award];
@@ -86,29 +85,6 @@ export const Overview = () => (
           );
         })}
       </div>
-
-      <Reveal delay={0.26}>
-        <div
-          className="mt-4 flex flex-col gap-6 rounded-2xl border border-[#D4AF37]/18 bg-[#0B060F]/60 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between"
-          data-testid="feature-card-4"
-        >
-          <p className="max-w-2xl font-display text-lg sm:text-xl font-semibold text-[#F4F1F8]">
-            “<span className="text-gold-grad">Hands-on using Qiskit</span> and simulated quantum
-            environments, with optional real quantum hardware access where available.”
-          </p>
-          <div className="flex shrink-0 items-center gap-5">
-            {[ShieldAlert, ScanSearch, LockKeyhole].map((Icon, i) => (
-              <motion.span
-                key={i}
-                whileHover={{ y: -4 }}
-                className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4AF37]/25 bg-[#2B0B1E]/60 text-[#D4AF37]"
-              >
-                <Icon className="h-5 w-5" />
-              </motion.span>
-            ))}
-          </div>
-        </div>
-      </Reveal>
     </div>
   </section>
 );
@@ -155,16 +131,6 @@ export const Audience = () => (
           );
         })}
       </div>
-
-      <Reveal delay={0.2}>
-        <blockquote
-          className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-[#D4AF37]/20 bg-[#0B060F]/70 p-7 sm:flex-row sm:items-center sm:gap-6 sm:p-8"
-          data-testid="audience-note"
-        >
-          <Quote className="h-6 w-6 shrink-0 text-[#D4AF37]" aria-hidden="true" />
-          <p className="text-sm sm:text-base italic leading-relaxed text-[#B3A7C2]">{LABS_NOTE}</p>
-        </blockquote>
-      </Reveal>
     </div>
   </section>
 );
