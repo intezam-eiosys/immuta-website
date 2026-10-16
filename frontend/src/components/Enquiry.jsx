@@ -56,7 +56,7 @@ export const Enquiry = () => {
   };
 
   const inputCls =
-    "w-full rounded-lg border border-white/10 bg-[#0B060F]/70 px-4 py-3.5 text-sm sm:text-base text-[#F4F1F8] placeholder-[#7A6D8C] outline-none transition-all duration-300 focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.15)]";
+    "w-full rounded-lg border border-gold/25 bg-inputbg/70 px-4 py-3.5 text-sm sm:text-base text-textmain placeholder-text3 outline-none transition-all duration-300 focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.15)]";
 
   const contactRows = [
     { icon: Phone, label: "Phone", value: COURSE.contact.phone, tid: "contact-phone" },
@@ -67,7 +67,7 @@ export const Enquiry = () => {
   return (
     <section
       id="enquire"
-      className="relative overflow-hidden border-y border-[#D4AF37]/12 bg-[#12071A] py-24 sm:py-32"
+      className="relative overflow-hidden border-y border-gold/12 bg-sect3 py-24 sm:py-32"
       data-testid="enquiry-section"
     >
       <div
@@ -83,11 +83,11 @@ export const Enquiry = () => {
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
-              <Eyebrow no="06">Enquiry</Eyebrow>
+              <Eyebrow no="05">Enquiry</Eyebrow>
               <SectionTitle className="mt-5">
                 Book your free consultation.
               </SectionTitle>
-              <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+              <p className="mt-5 text-sm sm:text-base leading-relaxed text-text2">
                 Tell us where your team stands — we will map the route from your first qubit to a
                 full quantum-ready skillset, and answer every question about the certificate.
               </p>
@@ -96,17 +96,17 @@ export const Enquiry = () => {
               {contactRows.map((row, i) => (
                 <Reveal key={row.label} delay={0.08 * i}>
                   <div
-                    className="group flex items-center gap-4 rounded-xl border border-[#D4AF37]/18 bg-[#0B060F]/60 px-5 py-4 transition-all duration-300 hover:border-[#D4AF37]/40"
+                    className="group flex items-center gap-4 rounded-xl border border-gold/18 bg-ink/60 px-5 py-4 transition-all duration-300 hover:border-gold/40"
                     data-testid={row.tid}
                   >
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#D4AF37]/30 bg-[#2B0B1E]/60 text-[#D4AF37] transition-transform duration-300 group-hover:scale-110">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-gold/30 bg-card2/60 text-gold transition-transform duration-300 group-hover:scale-110">
                       <row.icon className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#7A6D8C]">
+                      <p className="font-mono2 text-[10px] uppercase tracking-[0.25em] text-text3">
                         {row.label}
                       </p>
-                      <p className="mt-1 text-sm sm:text-base font-semibold text-[#F4F1F8]">
+                      <p className="mt-1 text-sm sm:text-base font-semibold text-textmain">
                         {row.value}
                       </p>
                     </div>
@@ -117,7 +117,7 @@ export const Enquiry = () => {
           </div>
 
           <Reveal className="lg:col-span-7" delay={0.1}>
-            <div className="relative rounded-3xl border border-[#D4AF37]/25 bg-gradient-to-br from-[#2B0B1E]/70 to-[#180C1F]/90 p-7 shadow-[0_30px_90px_rgba(11,6,15,0.6)] sm:p-10">
+            <div className="relative rounded-3xl border border-gold/25 bg-gradient-to-br from-card2/70 to-card3/90 p-7 shadow-[0_30px_90px_rgba(11,6,15,0.6)] sm:p-10">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -137,18 +137,18 @@ export const Enquiry = () => {
                     >
                       <CheckCircle2 className="h-9 w-9 text-[#10B981]" />
                     </motion.span>
-                    <h3 className="mt-7 font-display text-2xl sm:text-3xl font-bold text-[#F4F1F8]">
+                    <h3 className="mt-7 font-display text-2xl sm:text-3xl font-bold text-textmain">
                       Enquiry received.
                     </h3>
-                    <p className="mt-3 max-w-sm text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+                    <p className="mt-3 max-w-sm text-sm sm:text-base leading-relaxed text-text2">
                       Thank you, {form.name.split(" ")[0]}. Our programme advisors will reach out
-                      to <span className="text-[#F4F1F8]">{form.email}</span> within one working
+                      to <span className="text-textmain">{form.email}</span> within one working
                       day.
                     </p>
                     <button
                       data-testid="enquiry-reset-btn"
                       onClick={reset}
-                      className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/35 px-6 py-3 font-display text-sm font-semibold text-[#F4F1F8] transition-all duration-300 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+                      className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/35 px-6 py-3 font-display text-sm font-semibold text-textmain transition-all duration-300 hover:border-gold hover:bg-gold/10"
                     >
                       Send another enquiry
                     </button>
@@ -165,17 +165,17 @@ export const Enquiry = () => {
                     noValidate
                   >
                     <div className="flex items-center justify-between gap-4">
-                      <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F4F1F8]">
+                      <h3 className="font-display text-xl sm:text-2xl font-bold text-textmain">
                         Course Enquiry
                       </h3>
-                      <span className="rounded-full border border-[#9A36E3]/40 bg-[#9A36E3]/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#C77DFF]">
+                      <span className="rounded-full border border-brand/40 bg-brand/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.2em] text-plite">
                         Founding {COURSE.foundingPrice}
                       </span>
                     </div>
 
                     <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
                       <div className="sm:col-span-1">
-                        <label htmlFor="enq-name" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#B3A7C2]">
+                        <label htmlFor="enq-name" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-text2">
                           Full Name *
                         </label>
                         <input
@@ -187,13 +187,13 @@ export const Enquiry = () => {
                           onChange={set("name")}
                         />
                         {errors.name && (
-                          <p className="mt-1.5 text-xs text-[#FF5E36]" data-testid="enquiry-error-name">
+                          <p className="mt-1.5 text-xs text-coral" data-testid="enquiry-error-name">
                             {errors.name}
                           </p>
                         )}
                       </div>
                       <div className="sm:col-span-1">
-                        <label htmlFor="enq-email" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#B3A7C2]">
+                        <label htmlFor="enq-email" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-text2">
                           Email ID *
                         </label>
                         <input
@@ -206,13 +206,13 @@ export const Enquiry = () => {
                           onChange={set("email")}
                         />
                         {errors.email && (
-                          <p className="mt-1.5 text-xs text-[#FF5E36]" data-testid="enquiry-error-email">
+                          <p className="mt-1.5 text-xs text-coral" data-testid="enquiry-error-email">
                             {errors.email}
                           </p>
                         )}
                       </div>
                       <div className="sm:col-span-1">
-                        <label htmlFor="enq-phone" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#B3A7C2]">
+                        <label htmlFor="enq-phone" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-text2">
                           Phone Number *
                         </label>
                         <input
@@ -225,13 +225,13 @@ export const Enquiry = () => {
                           onChange={set("phone")}
                         />
                         {errors.phone && (
-                          <p className="mt-1.5 text-xs text-[#FF5E36]" data-testid="enquiry-error-phone">
+                          <p className="mt-1.5 text-xs text-coral" data-testid="enquiry-error-phone">
                             {errors.phone}
                           </p>
                         )}
                       </div>
                       <div className="sm:col-span-1">
-                        <label htmlFor="enq-course" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#B3A7C2]">
+                        <label htmlFor="enq-course" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-text2">
                           Interested Course *
                         </label>
                         <select
@@ -247,14 +247,14 @@ export const Enquiry = () => {
                           <option value="Custom Corporate Training">Custom Corporate Training</option>
                         </select>
                         {errors.course && (
-                          <p className="mt-1.5 text-xs text-[#FF5E36]" data-testid="enquiry-error-course">
+                          <p className="mt-1.5 text-xs text-coral" data-testid="enquiry-error-course">
                             {errors.course}
                           </p>
                         )}
                       </div>
                       <div className="sm:col-span-2">
-                        <label htmlFor="enq-message" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#B3A7C2]">
-                          Message <span className="text-[#7A6D8C]">(optional)</span>
+                        <label htmlFor="enq-message" className="mb-2 block font-mono2 text-[10px] uppercase tracking-[0.2em] text-text2">
+                          Message <span className="text-text3">(optional)</span>
                         </label>
                         <textarea
                           id="enq-message"
@@ -272,7 +272,7 @@ export const Enquiry = () => {
                       type="submit"
                       data-testid="enquiry-submit-btn"
                       disabled={sending}
-                      className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FF5E36] px-8 py-4 font-display text-base font-semibold text-[#0B060F] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04822] hover:shadow-[0_18px_44px_rgba(255,94,54,0.4)] disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+                      className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-coral px-8 py-4 font-display text-base font-semibold text-[#0B060F] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E04822] hover:shadow-[0_18px_44px_rgba(255,94,54,0.4)] disabled:cursor-wait disabled:opacity-70 sm:w-auto"
                     >
                       {sending ? (
                         <>
@@ -286,8 +286,8 @@ export const Enquiry = () => {
                         </>
                       )}
                     </button>
-                    <p className="mt-4 flex items-center gap-2 text-xs text-[#7A6D8C]" data-testid="enquiry-privacy-note">
-                      <AlertCircle className="h-3.5 w-3.5 text-[#D4AF37]" />
+                    <p className="mt-4 flex items-center gap-2 text-xs text-text3" data-testid="enquiry-privacy-note">
+                      <AlertCircle className="h-3.5 w-3.5 text-gold" />
                       Your details are stored securely and only used to answer this enquiry.
                     </p>
                   </motion.form>

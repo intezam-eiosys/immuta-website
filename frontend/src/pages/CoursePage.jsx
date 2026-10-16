@@ -12,7 +12,14 @@ import { Footer } from "@/components/Footer";
 const NOISE =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E\")";
 
-export default function CoursePage() {
+export default function CoursePage({ theme = "dark" }) {
+  useEffect(() => {
+    document.title =
+      theme === "light"
+        ? "Quantum Foundations Certificate · IMMUTA Technologies (Light)"
+        : "Quantum Foundations Certificate · IMMUTA Technologies";
+  }, [theme]);
+
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     window.__lenis = lenis;
@@ -30,7 +37,11 @@ export default function CoursePage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#0B060F] text-[#F4F1F8]" data-testid="course-page">
+    <div
+      className={`relative min-h-screen bg-ink text-textmain ${theme === "light" ? "theme-light" : ""}`}
+      data-testid={theme === "light" ? "course-page-light" : "course-page"}
+      data-theme={theme}
+    >
       <div
         className="pointer-events-none fixed inset-0 z-[60] opacity-[0.05] mix-blend-overlay"
         style={{ backgroundImage: NOISE }}

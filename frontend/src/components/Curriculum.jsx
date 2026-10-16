@@ -7,17 +7,17 @@ export const Curriculum = () => (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <Reveal className="lg:sticky lg:top-28">
+          <Reveal className="lg:sticky lg:top-32">
             <Eyebrow no="02">Curriculum Alignment</Eyebrow>
             <SectionTitle className="mt-5">Three modules. Nineteen hours. One strong start.</SectionTitle>
-            <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+            <p className="mt-5 text-sm sm:text-base leading-relaxed text-text2">
               Module hours sum to 19 hours — from your first qubit and the Bloch sphere, through
               gates and circuits, to entanglement and Bell states.
             </p>
-            <div className="mt-8 flex items-center gap-4 rounded-xl border border-[#D4AF37]/20 bg-[#2B0B1E]/40 p-5">
+            <div className="mt-8 flex items-center gap-4 rounded-xl border border-gold/20 bg-card2/40 p-5">
               <span className="font-display text-4xl font-extrabold text-gold-grad">19</span>
-              <p className="text-sm leading-relaxed text-[#B3A7C2]">
-                hours across three modules — <span className="text-[#F4F1F8]">Qubits to Bell states</span>, hands-on throughout.
+              <p className="text-sm leading-relaxed text-text2">
+                hours across three modules — <span className="text-textmain">Qubits to Bell states</span>, hands-on throughout.
               </p>
             </div>
           </Reveal>
@@ -30,23 +30,23 @@ export const Curriculum = () => (
                 <AccordionItem
                   value={m.id}
                   data-testid={`curriculum-accordion-item-${i + 1}`}
-                  className="rounded-2xl border border-[#D4AF37]/18 bg-gradient-to-br from-[#2B0B1E]/40 to-[#180C1F] px-6 sm:px-8 py-2 transition-colors duration-300 data-[state=open]:border-[#D4AF37]/45"
+                  className="rounded-2xl border border-gold/18 bg-gradient-to-br from-card2/40 to-card3 px-6 sm:px-8 py-2 transition-colors duration-300 data-[state=open]:border-gold/45"
                 >
                   <AccordionTrigger className="group py-5 text-left hover:no-underline [&>svg]:hidden">
                     <span className="flex flex-1 flex-wrap items-center gap-4 sm:gap-6 pr-4">
-                      <span className="font-mono2 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#D4AF37]">
+                      <span className="font-mono2 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-gold">
                         {m.no}
                       </span>
-                      <span className="font-display text-lg sm:text-2xl font-bold text-[#F4F1F8]">
+                      <span className="font-display text-lg sm:text-2xl font-bold text-textmain">
                         {m.title}
                       </span>
-                      <span className="rounded-full border border-[#9A36E3]/35 bg-[#9A36E3]/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.15em] text-[#C77DFF]" data-testid={`curriculum-hours-${i + 1}`}>
+                      <span className="rounded-full border border-brand/35 bg-brand/10 px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.15em] text-plite" data-testid={`curriculum-hours-${i + 1}`}>
                         {m.hours}
                       </span>
                     </span>
                     <span
                       data-testid={`curriculum-chevron-${i + 1}`}
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D4AF37]/30 text-[#D4AF37] transition-transform duration-300 group-data-[state=open]:rotate-45"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/30 text-gold transition-transform duration-300 group-data-[state=open]:rotate-45"
                       aria-hidden="true"
                     >
                       +
@@ -54,18 +54,18 @@ export const Curriculum = () => (
                   </AccordionTrigger>
                   <AccordionContent className="pb-7">
                     {m.body && (
-                      <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+                      <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-text2">
                         {m.body}
                       </p>
                     )}
-                    <p className={`font-mono2 text-[10px] uppercase tracking-[0.25em] text-[#7A6D8C] ${m.body ? "mt-6" : ""}`}>
+                    <p className={`font-mono2 text-[10px] uppercase tracking-[0.25em] text-text3 ${m.body ? "mt-6" : ""}`}>
                       Core Topics
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {m.topics.map((t) => (
                         <span
                           key={t}
-                          className="rounded-full border border-[#9A36E3]/35 bg-[#9A36E3]/10 px-3.5 py-1.5 text-xs sm:text-sm text-[#E4CBFF]"
+                          className="rounded-full border border-brand/35 bg-brand/10 px-3.5 py-1.5 text-xs sm:text-sm text-plite"
                           data-testid={`curriculum-topic-${t.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                         >
                           {t}

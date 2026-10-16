@@ -38,24 +38,21 @@ export const Hero = () => (
     </video>
 
     {/* legibility overlays: darker on the left where the text sits, video shows through on the right */}
-    <div className="absolute inset-0 bg-[#0B060F]/40" aria-hidden="true" />
+    <div className="absolute inset-0 bg-ink/40" aria-hidden="true" style={{ background: "var(--hero-veil)" }} />
     <div
       className="absolute inset-0"
       aria-hidden="true"
-      style={{
-        background:
-          "linear-gradient(to right, rgba(11,6,15,0.94) 0%, rgba(11,6,15,0.72) 48%, rgba(11,6,15,0.15) 100%)",
-      }}
+      style={{ background: "var(--hero-grad)" }}
     />
     <div
       className="absolute inset-x-0 bottom-0 h-40"
       aria-hidden="true"
-      style={{ background: "linear-gradient(to top, #0B060F 10%, transparent 100%)" }}
+      style={{ background: "linear-gradient(to top, var(--bg) 10%, transparent 100%)" }}
     />
     <div
       className="absolute inset-x-0 top-0 h-28"
       aria-hidden="true"
-      style={{ background: "linear-gradient(to bottom, rgba(11,6,15,0.7), transparent)" }}
+      style={{ background: "var(--top-fade)" }}
     />
 
     {/* content — left side, over the dark gradient */}
@@ -65,17 +62,17 @@ export const Hero = () => (
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-          className="mb-7 flex items-center gap-3 font-mono2 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#D4AF37]"
+          className="mb-7 flex items-center gap-3 font-mono2 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-gold"
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D4AF37] opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D4AF37]" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
           </span>
           {COURSE.eyebrow}
         </motion.div>
 
         <h1
-          className="font-display text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.98] tracking-tight text-[#F4F1F8]"
+          className="font-display text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.98] tracking-tight text-textmain"
           data-testid="hero-heading"
         >
           <HeroLine delay={0.2}>Quantum</HeroLine>
@@ -91,7 +88,7 @@ export const Hero = () => (
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65, ease: EASE }}
-          className="mt-7 max-w-xl text-base leading-relaxed text-[#D8CFE4] sm:text-lg"
+          className="mt-7 max-w-xl text-base leading-relaxed text-text2 sm:text-lg"
           data-testid="hero-description"
         >
           {COURSE.description}
@@ -106,7 +103,7 @@ export const Hero = () => (
           <button
             data-testid="hero-enquire-cta"
             onClick={() => scrollToId("enquire")}
-            className="group inline-flex items-center gap-2 rounded-full bg-[#FF5E36] px-7 py-4 font-display text-sm sm:text-base font-semibold text-[#0B060F] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E04822] hover:shadow-[0_18px_44px_rgba(255,94,54,0.45)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-coral px-7 py-4 font-display text-sm sm:text-base font-semibold text-[#0B060F] transition-all duration-300 hover:-translate-y-1 hover:bg-[#E04822] hover:shadow-[0_18px_44px_rgba(255,94,54,0.45)]"
           >
             Book Your Free Consultation
             <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -114,9 +111,9 @@ export const Hero = () => (
           <button
             data-testid="hero-curriculum-cta"
             onClick={() => scrollToId("curriculum")}
-            className="group inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/45 bg-[#0B060F]/40 px-7 py-4 font-display text-sm sm:text-base font-semibold text-[#F4F1F8] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+            className="group inline-flex items-center gap-2 rounded-full border border-gold/45 bg-ink/40 px-7 py-4 font-display text-sm sm:text-base font-semibold text-textmain backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:bg-gold/10"
           >
-            <Download className="h-4 w-4 text-[#D4AF37] transition-transform duration-300 group-hover:translate-y-0.5" />
+            <Download className="h-4 w-4 text-gold transition-transform duration-300 group-hover:translate-y-0.5" />
             View Curriculum
           </button>
         </motion.div>
@@ -125,16 +122,16 @@ export const Hero = () => (
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.95, ease: EASE }}
-          className="mt-12 grid max-w-xl grid-cols-2 gap-y-6 border-t border-[#D4AF37]/25 pt-7 sm:grid-cols-4"
+          className="mt-12 grid max-w-xl grid-cols-2 gap-y-6 border-t border-gold/25 pt-7 sm:grid-cols-4"
           data-testid="hero-stats"
         >
           {COURSE.stats.map((s) => (
             <div key={s.label}>
-              <dt className="font-mono2 text-[10px] uppercase tracking-[0.22em] text-[#C9BCA0]">
+              <dt className="font-mono2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
                 {s.label}
               </dt>
               <dd
-                className="mt-1.5 font-display text-lg font-bold text-[#F4F1F8] sm:text-xl"
+                className="mt-1.5 font-display text-lg font-bold text-textmain sm:text-xl"
                 data-testid={`hero-stat-${s.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
               >
                 {s.value}

@@ -3,15 +3,47 @@
 @tailwind utilities;
 
 :root {
-  --ink: #0b060f;
-  --burgundy: #2b0b1e;
-  --card: #180c1f;
-  --purple: #9a36e3;
-  --coral: #ff5e36;
-  --gold: #d4af37;
-  --text: #f4f1f8;
-  --text-2: #b3a7c2;
-  --text-3: #7a6d8c;
+  --bg-rgb: 11 6 15;
+  --text-rgb: 244 241 248;
+  --text2-rgb: 179 167 194;
+  --text3-rgb: 122 109 140;
+  --gold-rgb: 212 175 55;
+  --purple-rgb: 154 54 227;
+  --plite-rgb: 199 125 255;
+  --coral-rgb: 255 94 54;
+  --card2-rgb: 43 11 30;
+  --card3-rgb: 24 12 31;
+  --sect2-rgb: 14 7 20;
+  --sect3-rgb: 18 7 26;
+  --sect4-rgb: 7 4 9;
+  --inputbg-rgb: 11 6 15;
+  --bg: #0b060f;
+  --hero-grad: linear-gradient(to right, rgba(11, 6, 15, 0.94) 0%, rgba(11, 6, 15, 0.72) 48%, rgba(11, 6, 15, 0.15) 100%);
+  --hero-veil: rgba(11, 6, 15, 0.4);
+  --top-fade: linear-gradient(to bottom, rgba(11, 6, 15, 0.7), transparent);
+  --glow-burg: rgba(43, 11, 30, 0.9);
+}
+
+.theme-light {
+  --bg-rgb: 248 244 236;
+  --text-rgb: 37 19 48;
+  --text2-rgb: 94 78 112;
+  --text3-rgb: 138 125 153;
+  --gold-rgb: 146 112 26;
+  --purple-rgb: 122 34 196;
+  --plite-rgb: 112 44 178;
+  --coral-rgb: 255 94 54;
+  --card2-rgb: 255 255 255;
+  --card3-rgb: 251 248 242;
+  --sect2-rgb: 243 236 226;
+  --sect3-rgb: 246 238 228;
+  --sect4-rgb: 240 233 222;
+  --inputbg-rgb: 255 255 255;
+  --bg: #f8f4ec;
+  --hero-grad: linear-gradient(to right, rgba(248, 244, 236, 0.95) 0%, rgba(248, 244, 236, 0.82) 48%, rgba(248, 244, 236, 0.2) 100%);
+  --hero-veil: rgba(248, 244, 236, 0.35);
+  --top-fade: linear-gradient(to bottom, rgba(248, 244, 236, 0.78), transparent);
+  --glow-burg: rgba(255, 214, 170, 0.55);
 }
 
 html {
@@ -29,7 +61,7 @@ html.lenis body {
 
 body {
   margin: 0;
-  background: var(--ink);
+  background: var(--bg);
   color: var(--text);
   font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,19 +79,19 @@ body {
 
 ::selection {
   background: var(--gold);
-  color: #0b060f;
+  color: var(--bg);
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b060f;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, rgba(212, 175, 55, 0.5), rgba(154, 54, 227, 0.5));
   border-radius: 8px;
-  border: 2px solid #0b060f;
+  border: 2px solid var(--bg);
 }
 
 .text-gold-grad {
@@ -72,6 +104,30 @@ body {
 .text-stroke {
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(212, 175, 55, 0.75);
+}
+
+.theme-light .text-gold-grad {
+  background: linear-gradient(115deg, #c49a2a 0%, #92701a 50%, #7a5a12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.theme-light .text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(146, 112, 26, 0.85);
+}
+
+/* the logo artwork has white lettering made for dark backgrounds —
+   darken it on the light theme so the wordmark stays readable */
+.theme-light .logo-img {
+  filter: brightness(0.42) saturate(1.5);
+}
+
+.theme-light [data-sonner-toaster] {
+  --normal-bg: #ffffff;
+  --normal-text: #251330;
+  --normal-border: rgba(146, 112, 26, 0.35);
 }
 
 @keyframes marquee {

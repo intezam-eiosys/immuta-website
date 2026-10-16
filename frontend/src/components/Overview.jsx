@@ -39,29 +39,36 @@ export const Overview = () => (
       <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3">
         {FEATURES.map((f, i) => {
           const Icon = FEATURE_ICONS[i];
-          const accent = i === 1 ? "#C77DFF" : "#D4AF37";
-          const accentBorder = i === 1 ? "hover:border-[#9A36E3]/50 hover:shadow-[0_20px_50px_rgba(154,54,227,0.18)]" : "hover:border-[#D4AF37]/50 hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)]";
+          const accent = i === 1 ? "var(--plite)" : "var(--gold)";
           return (
             <Reveal key={f.title} delay={0.07 * i} className="h-full">
               <article
-                className={`flex h-full flex-col rounded-2xl border border-[#D4AF37]/18 bg-gradient-to-br from-[#2B0B1E]/50 to-[#180C1F] p-7 transition-all duration-500 sm:p-8 ${accentBorder}`}
+                className={`flex h-full flex-col rounded-2xl border border-gold/18 bg-gradient-to-br from-card2/50 to-card3 p-7 transition-all duration-500 sm:p-8 ${
+                  i === 1
+                    ? "hover:border-brand/50 hover:shadow-[0_20px_50px_rgba(154,54,227,0.18)]"
+                    : "hover:border-gold/50 hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)]"
+                }`}
                 data-testid={`feature-card-${i + 1}`}
               >
                 <div className="flex items-center justify-between">
                   <span
                     className="flex h-12 w-12 items-center justify-center rounded-xl border"
-                    style={{ borderColor: `${accent}55`, background: `${accent}14`, color: accent }}
+                    style={{
+                      borderColor: `color-mix(in srgb, ${accent} 33%, transparent)`,
+                      background: `color-mix(in srgb, ${accent} 8%, transparent)`,
+                      color: accent,
+                    }}
                   >
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#7A6D8C]">
+                  <span className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-text3">
                     0{i + 1}
                   </span>
                 </div>
-                <h3 className="mt-6 font-display text-lg sm:text-xl font-bold text-[#F4F1F8]">
+                <h3 className="mt-6 font-display text-lg sm:text-xl font-bold text-textmain">
                   {f.title}
                 </h3>
-                <p className="mt-3 flex-1 text-sm sm:text-base leading-relaxed text-[#B3A7C2]">
+                <p className="mt-3 flex-1 text-sm sm:text-base leading-relaxed text-text2">
                   {f.body}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
@@ -74,7 +81,11 @@ export const Overview = () => (
                     <span
                       key={a}
                       className="rounded-full border px-3 py-1 font-mono2 text-[10px] uppercase tracking-[0.15em]"
-                      style={{ borderColor: `${accent}40`, background: `${accent}0f`, color: accent }}
+                      style={{
+                        borderColor: `color-mix(in srgb, ${accent} 40%, transparent)`,
+                        background: `color-mix(in srgb, ${accent} 6%, transparent)`,
+                        color: accent,
+                      }}
                     >
                       {a}
                     </span>
@@ -92,7 +103,7 @@ export const Overview = () => (
 export const Audience = () => (
   <section
     id="audience"
-    className="relative border-y border-[#D4AF37]/12 bg-[#0E0714] py-24 sm:py-32"
+    className="relative border-y border-gold/12 bg-sect2 py-24 sm:py-32"
     data-testid="audience-section"
   >
     <div
@@ -100,7 +111,7 @@ export const Audience = () => (
       aria-hidden="true"
       style={{
         background:
-          "radial-gradient(ellipse 45% 40% at 10% 100%, rgba(43,11,30,0.8), transparent 70%)",
+          "radial-gradient(ellipse 45% 40% at 10% 100%, var(--glow-burg), transparent 70%)",
       }}
     />
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,13 +128,13 @@ export const Audience = () => (
           return (
             <Reveal key={a} delay={0.05 * i} className="h-full">
               <div
-                className="group flex h-full flex-col gap-4 rounded-2xl border border-[#D4AF37]/15 bg-gradient-to-b from-[#2B0B1E]/50 to-[#180C1F]/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#9A36E3]/45 hover:shadow-[0_14px_36px_rgba(154,54,227,0.14)]"
+                className="group flex h-full flex-col gap-4 rounded-2xl border border-gold/15 bg-gradient-to-b from-card2/50 to-card3/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/45 hover:shadow-[0_14px_36px_rgba(154,54,227,0.14)]"
                 data-testid={`audience-item-${i + 1}`}
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#9A36E3]/35 bg-[#9A36E3]/10 text-[#C77DFF] transition-transform duration-300 group-hover:scale-110">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand/35 bg-brand/10 text-plite transition-transform duration-300 group-hover:scale-110">
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="text-sm sm:text-base font-medium leading-snug text-[#F4F1F8]">
+                <span className="text-sm sm:text-base font-medium leading-snug text-textmain">
                   {a}
                 </span>
               </div>

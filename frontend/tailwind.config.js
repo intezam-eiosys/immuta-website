@@ -15,6 +15,20 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)'
       },
       colors: {
+        ink: 'rgb(var(--bg-rgb) / <alpha-value>)',
+        textmain: 'rgb(var(--text-rgb) / <alpha-value>)',
+        text2: 'rgb(var(--text2-rgb) / <alpha-value>)',
+        text3: 'rgb(var(--text3-rgb) / <alpha-value>)',
+        gold: 'rgb(var(--gold-rgb) / <alpha-value>)',
+        brand: 'rgb(var(--purple-rgb) / <alpha-value>)',
+        plite: 'rgb(var(--plite-rgb) / <alpha-value>)',
+        coral: 'rgb(var(--coral-rgb) / <alpha-value>)',
+        card2: 'rgb(var(--card2-rgb) / <alpha-value>)',
+        card3: 'rgb(var(--card3-rgb) / <alpha-value>)',
+        sect2: 'rgb(var(--sect2-rgb) / <alpha-value>)',
+        sect3: 'rgb(var(--sect3-rgb) / <alpha-value>)',
+        sect4: 'rgb(var(--sect4-rgb) / <alpha-value>)',
+        inputbg: 'rgb(var(--inputbg-rgb) / <alpha-value>)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

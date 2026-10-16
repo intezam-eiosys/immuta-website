@@ -15,12 +15,12 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex min-h-screen items-center justify-center bg-[#0B060F] px-6 text-center">
+        <div className="flex min-h-screen items-center justify-center bg-ink px-6 text-center">
           <div>
-            <p className="font-display text-2xl font-bold text-[#F4F1F8]">
+            <p className="font-display text-2xl font-bold text-textmain">
               Something went wrong.
             </p>
-            <p className="mt-3 text-sm text-[#B3A7C2]">
+            <p className="mt-3 text-sm text-text2">
               Please refresh the page. If the issue persists, contact IMMUTA Technologies.
             </p>
           </div>
@@ -37,6 +37,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CoursePage />} />
+          <Route path="/light" element={<CoursePage key="light" theme="light" />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<CoursePage />} />
         </Routes>

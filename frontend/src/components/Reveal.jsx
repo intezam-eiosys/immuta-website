@@ -16,8 +16,8 @@ export const Reveal = ({ children, delay = 0, y = 28, className = "", ...rest })
 );
 
 export const Eyebrow = ({ no, children }) => (
-  <div className="flex items-center gap-3 font-mono2 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#D4AF37]">
-    <span className="inline-block h-px w-8 bg-[#D4AF37]/60" aria-hidden="true" />
+  <div className="flex items-center gap-3 font-mono2 text-[11px] sm:text-xs uppercase tracking-[0.3em] text-gold">
+    <span className="inline-block h-px w-8 bg-gold/60" aria-hidden="true" />
     <span>
       {no} — {children}
     </span>
@@ -26,7 +26,7 @@ export const Eyebrow = ({ no, children }) => (
 
 export const SectionTitle = ({ children, className = "" }) => (
   <h2
-    className={`font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#F4F1F8] ${className}`}
+    className={`font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-textmain ${className}`}
   >
     {children}
   </h2>
