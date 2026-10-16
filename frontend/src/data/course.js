@@ -32,6 +32,13 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1623479322729-28b25c16b011?crop=entropy&cs=srgb&fm=jpg&q=85",
 };
 
+export const VIDEOS = {
+  focus: "/videos/focus.mp4",
+  focusWebm: "/videos/focus.webm",
+  labs: "/videos/labs.mp4",
+  labsWebm: "/videos/labs.webm",
+};
+
 export const NAV_LINKS = [
   { label: "Overview", id: "overview" },
   { label: "Curriculum", id: "curriculum" },

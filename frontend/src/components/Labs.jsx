@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
-import { LABS, IMAGES, LABS_NOTE } from "@/data/course";
+import { LABS, IMAGES, VIDEOS, LABS_NOTE } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
 
 export const Labs = () => (
@@ -61,13 +61,19 @@ export const Labs = () => (
         <Reveal className="lg:col-span-5" delay={0.15}>
           <div className="sticky top-28">
             <div className="relative overflow-hidden rounded-2xl border border-[#D4AF37]/25">
-              <img
-                src={IMAGES.fiber}
-                alt="Simulated quantum environments"
+              <video
+                poster={IMAGES.fiber}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
                 className="aspect-[4/5] w-full object-cover"
-                loading="lazy"
-                data-testid="labs-image"
-              />
+                data-testid="labs-video"
+              >
+                <source src={VIDEOS.labsWebm} type="video/webm" />
+                <source src={VIDEOS.labs} type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-[#2B0B1E] via-transparent to-[#0B060F]/40" />
               <div className="absolute inset-0 bg-[#9A36E3]/12 mix-blend-overlay" />
               <div

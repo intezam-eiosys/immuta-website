@@ -6,7 +6,6 @@ import { Marquee } from "@/components/Marquee";
 import { Overview, Audience } from "@/components/Overview";
 import { Curriculum } from "@/components/Curriculum";
 import { Labs } from "@/components/Labs";
-import { Pathway } from "@/components/Pathway";
 import { Enquiry } from "@/components/Enquiry";
 import { Footer } from "@/components/Footer";
 
@@ -45,7 +44,6 @@ export default function CoursePage() {
         <Curriculum />
         <Labs />
         <Audience />
-        <Pathway />
         <Enquiry />
       </main>
       <Footer />

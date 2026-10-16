@@ -1,9 +1,23 @@
 import { motion } from "framer-motion";
-import { ShieldAlert, ScanSearch, LockKeyhole, Quote } from "lucide-react";
-import { FEATURES, IMAGES, LABS_NOTE, AUDIENCE } from "@/data/course";
+import {
+  ShieldAlert, ScanSearch, ScanEye, LockKeyhole, Quote,
+  ShieldCheck, ShieldHalf, Server, FlaskConical, GraduationCap, TrendingUp, Building2,
+} from "lucide-react";
+import { FEATURES, IMAGES, VIDEOS, LABS_NOTE, AUDIENCE } from "@/data/course";
 import { Reveal, Eyebrow, SectionTitle } from "@/components/Reveal";
 
 const ICONS = [ShieldAlert, ScanSearch, LockKeyhole];
+
+const AUDIENCE_ICONS = [
+  ShieldCheck,
+  ScanEye,
+  ShieldHalf,
+  Server,
+  FlaskConical,
+  GraduationCap,
+  TrendingUp,
+  Building2,
+];
 
 export const Overview = () => (
   <section id="overview" className="relative py-24 sm:py-32" data-testid="overview-section">
@@ -22,12 +36,19 @@ export const Overview = () => (
             data-testid="feature-card-1"
           >
             <div className="relative h-64 overflow-hidden sm:h-72">
-              <img
-                src={IMAGES.servers}
-                alt="High-density computing hardware"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              <video
+                poster={IMAGES.servers}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                data-testid="focus-video"
+              >
+                <source src={VIDEOS.focusWebm} type="video/webm" />
+                <source src={VIDEOS.focus} type="video/mp4" />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-[#180C1F] via-[#2B0B1E]/40 to-transparent" />
               <div className="absolute inset-0 bg-[#9A36E3]/15 mix-blend-overlay" />
               <span className="absolute left-5 top-5 rounded-full border border-[#FF5E36]/40 bg-[#0B060F]/80 px-3.5 py-1.5 font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#FF5E36] backdrop-blur-sm">
@@ -147,17 +168,22 @@ export const Audience = () => (
       <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {AUDIENCE.map((a, i) => (
-              <Reveal key={a} delay={0.05 * i} className="h-full">
-                <div
-                  className="flex h-full items-center gap-3 rounded-xl border border-[#D4AF37]/15 bg-gradient-to-r from-[#2B0B1E]/50 to-[#180C1F]/60 px-5 py-4 transition-all duration-300 hover:border-[#9A36E3]/45 hover:shadow-[0_14px_36px_rgba(154,54,227,0.14)]"
-                  data-testid={`audience-item-${i + 1}`}
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4AF37]" aria-hidden="true" />
-                  <span className="text-sm sm:text-base text-[#F4F1F8]">{a}</span>
-                </div>
-              </Reveal>
-            ))}
+            {AUDIENCE.map((a, i) => {
+              const Icon = AUDIENCE_ICONS[i % AUDIENCE_ICONS.length];
+              return (
+                <Reveal key={a} delay={0.05 * i} className="h-full">
+                  <div
+                    className="flex h-full items-center gap-4 rounded-xl border border-[#D4AF37]/15 bg-gradient-to-r from-[#2B0B1E]/50 to-[#180C1F]/60 px-5 py-4 transition-all duration-300 hover:border-[#9A36E3]/45 hover:shadow-[0_14px_36px_rgba(154,54,227,0.14)]"
+                    data-testid={`audience-item-${i + 1}`}
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#9A36E3]/35 bg-[#9A36E3]/10 text-[#C77DFF] transition-all duration-300 group-hover:scale-105">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="text-sm sm:text-base text-[#F4F1F8]">{a}</span>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
 
